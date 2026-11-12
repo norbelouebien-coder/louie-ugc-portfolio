@@ -159,6 +159,7 @@ details summary::-webkit-details-marker{display:none}
 <span style="display: block; aspect-ratio: 9 / 16; border-radius: 18px; background: #22201D; border: 1px solid #34312C; position: relative; overflow: hidden">
 <sc-if value="{{w.hasVideo}}" hint-placeholder-val="{{false}}"><img src="{{w.poster}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
 <span style="position: absolute; left: 10px; top: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #141312; background: #F4F1EA; padding: 3px 8px; border-radius: 999px">{{w.type}}</span>
+<sc-if value="{{w.hasLabel}}" hint-placeholder-val="{{false}}"><span style="position: absolute; right: 10px; top: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #141312; background: #FF7A45; padding: 3px 8px; border-radius: 999px">{{w.label}}</span></sc-if>
 <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center"><svg width="44" height="44" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="#141312"></circle><path d="M27 22 L44 32 L27 42 Z" fill="#F4F1EA"></path></svg></span>
 </span>
 <span style="display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 15px">{{w.title}}</span><span style="font-size: 13px; color: #A8A196">{{w.meta}}</span></span>
@@ -392,6 +393,15 @@ var top=[
       { type: 'AI UGC', length: '0:15', title: 'Burgundy Corset Mini Dress', meta: 'Fashion · Spec ad', format: 'Try-on', category: 'Fashion', hasVideo: true, noStats: true, video: 'assets/corset-dress.mp4', poster: 'assets/corset-dress.jpg' }
     ];
 var all=[
+      { type: 'AI UGC', title: 'Energy gel · On the ride', meta: 'Spec ad · Outdoor talking head', label: 'Endurance', hasVideo: true, video: 'assets/energy-gel-ride.mp4', poster: 'assets/energy-gel-ride.jpg' },
+      { type: 'AI UGC', title: 'Supplement capsules · Morning routine', meta: 'Spec ad · Lifestyle routine', label: 'Wellness', hasVideo: true, video: 'assets/capsules-morning.mp4', poster: 'assets/capsules-morning.jpg' },
+      { type: 'AI UGC', title: 'Electrolyte sachet · Post-run', meta: 'Spec ad · Outdoor talking head', label: 'Endurance', hasVideo: true, video: 'assets/electrolyte-run.mp4', poster: 'assets/electrolyte-run.jpg' },
+      { type: 'AI UGC', title: 'Collagen powder · Kitchen demo', meta: 'Spec ad · Product demo', label: 'Beauty', hasVideo: true, video: 'assets/collagen-kitchen.mp4', poster: 'assets/collagen-kitchen.jpg' },
+      { type: 'AI UGC', title: 'Drink drops · Evening routine', meta: 'Spec ad · Talking head demo', label: 'Wellness', hasVideo: true, video: 'assets/drink-drops-evening.mp4', poster: 'assets/drink-drops-evening.jpg' },
+      { type: 'AI UGC', title: 'Daily capsules · Slow morning', meta: 'Spec ad · Aesthetic routine', label: 'Wellness', hasVideo: true, video: 'assets/capsules-aesthetic.mp4', poster: 'assets/capsules-aesthetic.jpg' },
+      { type: 'AI UGC', title: 'Whey protein · Post-workout shake', meta: 'Spec ad · Product demo', label: 'Fitness', hasVideo: true, video: 'assets/whey-shake-kitchen.mp4', poster: 'assets/whey-shake-kitchen.jpg' },
+      { type: 'AI UGC', title: 'Daily capsules · Kitchen chat', meta: 'Spec ad · Talking head', label: 'Wellness', hasVideo: true, video: 'assets/capsules-talk.mp4', poster: 'assets/capsules-talk.jpg' },
+      { type: 'AI UGC', title: 'Whey isolate · Shake demo', meta: 'Spec ad · Product demo', label: 'Fitness', hasVideo: true, video: 'assets/whey-isolate-demo.mp4', poster: 'assets/whey-isolate-demo.jpg' },
       { type: 'Hook tests', title: 'Whey protein · Hook A', meta: 'Spec ad · “Thirty seconds. Watch.”', hasVideo: true, video: 'assets/whey-hook-a.mp4', poster: 'assets/whey-hook-a.jpg' },
       { type: 'Hook tests', title: 'Whey protein · Hook B', meta: 'Spec ad · “Stop overthinking…”', hasVideo: true, video: 'assets/whey-hook-b.mp4', poster: 'assets/whey-hook-b.jpg' },
       { type: 'Brand UGC', title: 'Rescue Me! Barrier Gel Cream', meta: 'Spec ad · Smoochkins', hasVideo: true, video: 'assets/smoochkins-gel-cream.mp4', poster: 'assets/smoochkins-gel-cream.jpg' },
@@ -414,7 +424,7 @@ var base=['AI UGC','Product demos','Skincare','Hook tests','Fitness','Testimonia
 var logos=base.concat(base);
 var filter='All';
 function esc(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function norm(x){x.hasVideo=!!x.hasVideo;x.noVideo=!x.hasVideo;x.noStats=!!x.noStats;x.hasStats=!x.noStats;return x;}
+function norm(x){x.hasVideo=!!x.hasVideo;x.noVideo=!x.hasVideo;x.noStats=!!x.noStats;x.hasLabel=!!x.label;x.hasStats=!x.noStats;return x;}
 top.forEach(norm);all.forEach(norm);
 function render(name,items){
   var holder=document.querySelector('[data-for="'+name+'"]'); if(!holder) return;
